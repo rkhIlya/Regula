@@ -2,7 +2,11 @@
 #define IREPORTENGINE_H
 
 #include <QMap>
+#include <input/documentinformation.h>
+#include <search/reference.h>
+#include "group.h"
 
+using namespace Report;
 
 class IReportEngine
 {
@@ -21,8 +25,8 @@ public:
      * @param fileName      Имя выходного файла
      * @param outputFormat  Формат выходного файла
      */
-    virtual int generateSummaryReport(const DocumentInformation &docInfo,
-                                      const QMap<Group::GroupId, Group> &groups,
+    virtual int generateSummaryReport(const Input::DocumentInformation &docInfo,
+                                      const QMap<GroupId, Group> &groups,
                                       const QString &fileName,
                                       OutputFormat outputFormat) = 0;
 
@@ -34,14 +38,13 @@ public:
      * @param outputFormat  Формат выходного файла
      */
     virtual int generateDetailedReport(const DocumentInformation &docInfo,
-                                       const QMap<Reference::ReferenceId, Reference> &references,
+                                       const QMap<Search::ReferenceId, Search::Reference> &references,
                                        const QString &fileName,
                                        OutputFormat outputFormat) = 0;
 
 signals:
     void reportComplete(QString fileName);
     void progressChanged(double progress);
-
 };
 
 #endif // IREPORTENGINE_H
