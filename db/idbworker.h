@@ -4,8 +4,6 @@
 #include <QObject>
 
 
-
-
 class IDbWorker : public QObject
 {
     Q_OBJECT
@@ -17,7 +15,7 @@ public:
     virtual void requestDeisgnations() = 0;
     virtual QVariantMap getRegulationInfo(QString id) = 0;
 signals:
-    void disignationReceived(QList<QPair<QString, QString> > designations) = 0;
+    void disignationReceived(QList<QPair<QString, QString> > designations);
 
 
 };

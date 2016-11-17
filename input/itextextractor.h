@@ -10,6 +10,7 @@ public:
     ITextExtractor() {}
 
     virtual void requestText(QString fileName) = 0;
+
 signals:
     void textReceived(QString text);
 };
