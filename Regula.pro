@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,7 +18,8 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     input/documentinformation.cpp \
     report/group.cpp \
-    search/reference.cpp
+    search/reference.cpp \
+    input/readdocx.cpp
 
 HEADERS  += mainwindow.h \
     input/itextextractor.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     report/ireportengine.h \
     input/documentinformation.h \
     report/group.h \
-    search/reference.h
+    search/reference.h \
+    input/readdocx.h
 
 FORMS    += mainwindow.ui
