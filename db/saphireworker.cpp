@@ -1,70 +1,58 @@
 #include "saphireworker.h"
+#include <QDebug>
 
 SaphireWorker::SaphireWorker()
 {
+    _dbOpsThread = new QThread;
+    _dbOps = new SaphireDbOps;
+    _dbOps->moveToThread(_dbOpsThread);
+    _dbOpsThread->start();
 
+    QMetaObject::invokeMethod(_dbOps, "connectToDb", Qt::BlockingQueuedConnection);
+
+
+    connect(_dbOps, &SaphireDbOps::disignationsReceived, this, &SaphireWorker::onDesignationsReceived);
+
+    requestDesignations();
 }
 
-void SaphireWorker::updateDesignations()
+SaphireWorker::~SaphireWorker()
 {
-    QSqlQuery query(_db);
-    query.prepare("SELECT OBOZ, DOC_ID FROM TABLENAME"); //tablename
-    if (!query.exec())
-        //todo error handler
-        return;
+   _dbOpsThread->quit();
+   _dbOpsThread->wait();
 
-    while (query.next()) {
-        QString designation = query.value(0).toString();
-        QString docId = query.value(1).toString();
-        _designations.insert(designation, docId);
-    }
+   _dbOps->deleteLater();
+}
 
-    emit disignationsUpdated(_designations);
+void SaphireWorker::requestDesignations()
+{
+    QMetaObject::invokeMethod(_dbOps, "updateDesignations", Qt::QueuedConnection);
 }
 
 QVariantMap SaphireWorker::getRegulationInfo(QString id)
 {
-    QVariantMap info;
-    QString fields = "OBOZ,DOC_ID,...";
-    QSqlQuery query(_db);
-    query.prepare(QString("SELECT %1 WHERE DOC_ID = %2 FROM TABLENAME")
-                    .arg(fields)
-                    .arg(id)); //tablename
+    QVariantMap regInfo;
+    QMetaObject::invokeMethod(_dbOps, "getRegulationInfo", Qt::BlockingQueuedConnection ,
+                              Q_RETURN_ARG(QVariantMap, regInfo),
+                              Q_ARG(QString, id));
 
-    if (!query.exec()) {
-        return info;
-    }
-
-    foreach (QString field, fields.split(",")) {
-        if (!query.next())
-            return info;
-
-        info.insert(fields, query.value(field));
-    }
-
-    return info;
-
+    return regInfo;
 }
 
-void SaphireWorker::init()
+const QHash<QString, QString>& SaphireWorker::getDesignations(bool &ok)
 {
-    QSettings settings(QDir::currentPath() + "config.ini", QSettings::IniFormat);
-    settings.beginGroup("DATABASE");
-
-    QSqlDatabase _db = QSqlDatabase::addDatabase("QODBC", "Saphire");
-    _db.setHostName    (settings.value("hostname", "").toString());
-    _db.setDatabaseName(settings.value("dbname",   "").toString());
-    _db.setUserName    (settings.value("username", "").toString());
-    _db.setPassword    (settings.value("password", "").toString());
-
-    bool ok = _db.open();
-    if (!ok) {
-        //reinit? log?
-    }
-
+    ok = _updated;
+    return _designations;
 }
 
-void SaphireWorker::deinit()
+void SaphireWorker::onDesignationsReceived(const QHash<QString, QString> &designations)
 {
-    _db.close();
+    _updated = true;
+    _designations = designations;
+
+    emit designationsUpdated();
 }
+
+
+
+

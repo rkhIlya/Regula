@@ -1,40 +1,40 @@
 #ifndef SAPHIREWORKER_H
 #define SAPHIREWORKER_H
 
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSettings>
-#include <QDir>
+
 
 #include <QHash>
+#include <QThread>
 
 #include "idbworker.h"
+#include "saphiredbops.h"
 
-class SaphireWorker : public IDbWorker
+
+class SaphireWorker : public QObject, public IDbWorker
 {
     Q_OBJECT
 public:
     SaphireWorker();
+    ~SaphireWorker();
 
-    virtual void updateDesignations() override;
+    virtual void requestDesignations() override;
     virtual QVariantMap getRegulationInfo(QString id) override;
+
+    virtual const QHash<QString, QString>& getDesignations(bool &ok) override;
 
 
 private:
-    QSqlDatabase _db;
+
     QHash<QString, QString> _designations;
+    QThread      *_dbOpsThread;
+    SaphireDbOps *_dbOps;
 
+    bool _updated;
 
-    /*!
-     * \brief init Подключается к базе данных
-     */
-    void init();
-
-    /*!
-     * \brief deinit Отключение от базы данных
-     */
-    void deinit();
-
+public slots:
+    void onDesignationsReceived(const QHash<QString, QString>& designations);
+signals:
+    void designationsUpdated();
 
 
 };

@@ -1,22 +1,22 @@
 #ifndef IDBWORKER_H
 #define IDBWORKER_H
 
-#include <QObject>
+#include <QString>
+#include <QVariantMap>
 
 
-class IDbWorker : public QObject
+class IDbWorker
 {
-    Q_OBJECT
+
 public:
-    IDbWorker() {}
+    virtual ~IDbWorker() {}
     /*!
      * \brief requestDeisgnations Запрашивает столбец OBOZ всей таблицы.
      */
-    virtual void updateDesignations() = 0;
+    virtual void requestDesignations() = 0;
     virtual QVariantMap getRegulationInfo(QString id) = 0;
-signals:
-    void disignationsUpdated(const QHash<QString, QString>& designations);
 
+    virtual const QHash<QString, QString>& getDesignations(bool &ok) = 0;
 
 };
 

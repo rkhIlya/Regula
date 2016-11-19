@@ -16,7 +16,8 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     db/saphireworker.cpp \
     input/documentinformation.cpp \
-    input/readdocx.cpp
+    input/readdocx.cpp \
+    db/saphiredbops.cpp
 
 HEADERS  += mainwindow.h \
     input/itextextractor.h \
@@ -25,6 +26,7 @@ HEADERS  += mainwindow.h \
     report/ireportengine.h \
     db/saphireworker.h \
     input/documentinformation.h \
-    input/readdocx.h
+    input/readdocx.h \
+    db/saphiredbops.h
 
 FORMS    += mainwindow.ui
