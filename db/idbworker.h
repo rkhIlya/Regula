@@ -12,10 +12,10 @@ public:
     /*!
      * \brief requestDeisgnations Запрашивает столбец OBOZ всей таблицы.
      */
-    virtual void requestDeisgnations() = 0;
+    virtual void updateDesignations() = 0;
     virtual QVariantMap getRegulationInfo(QString id) = 0;
 signals:
-    void disignationReceived(QList<QPair<QString, QString> > designations);
+    void disignationsUpdated(const QHash<QString, QString>& designations);
 
 
 };

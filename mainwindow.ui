@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>817</width>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,113 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="ReadDocx" name="widget" native="true"/>
+     <widget class="QGroupBox" name="fileInputComboBox">
+      <property name="title">
+       <string>Выбор файла</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="docNameCheckBox">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="designationLineEdit"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="docNameLineEdit"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="designationCheckBox">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="fileNameLineEdit"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="fileDialogButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QGroupBox" name="filterComboBox">
+      <property name="title">
+       <string>Фильтр</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QWidget" name="filtersWidget" native="true"/>
+       </item>
+      </layout>
+      <zorder>fileInputComboBox</zorder>
+      <zorder>filtersWidget</zorder>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="analyzeButton">
+      <property name="text">
+       <string>Анализировать</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QTextEdit" name="logTextEdit"/>
+    </item>
+    <item row="0" column="1" rowspan="7">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabWidgetPage1" native="true">
+       <attribute name="title">
+        <string>Краткий</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QWidget" name="shortReportWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabWidgetPage2" native="true">
+       <attribute name="title">
+        <string>Полный</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QWidget" name="fullReportWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -25,10 +131,19 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>817</width>
      <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionPrint_to_PDF"/>
+    <addaction name="actionPrint_to_XLSX"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -39,16 +154,18 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionPrint_to_PDF">
+   <property name="text">
+    <string>Печать в PDF</string>
+   </property>
+  </action>
+  <action name="actionPrint_to_XLSX">
+   <property name="text">
+    <string>Печать в XLSX</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>ReadDocx</class>
-   <extends>QWidget</extends>
-   <header>input/readdocx.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
