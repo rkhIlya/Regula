@@ -3,3 +3,7 @@
 Regula.pro.user
 debug
 release
+*.Debug
+*.Release
+Makefile
+ui_*
