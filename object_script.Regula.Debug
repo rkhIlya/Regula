@@ -1,13 +1,13 @@
 INPUT(
 ./debug\main.o
 ./debug\mainwindow.o
+./debug\saphireworker.o
 ./debug\documentinformation.o
-./debug\group.o
-./debug\reference.o
 ./debug\readdocx.o
 ./debug\moc_mainwindow.o
 ./debug\moc_itextextractor.o
 ./debug\moc_idbworker.o
 ./debug\moc_isearchengine.o
+./debug\moc_saphireworker.o
 ./debug\moc_readdocx.o
 );

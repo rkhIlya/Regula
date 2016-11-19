@@ -1,3 +1,5 @@
 *.user
 *.o
 Regula.pro.user
+debug
+release

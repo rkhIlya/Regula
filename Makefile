@@ -182,6 +182,7 @@ Makefile: Regula.pro ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++/qmake.con
 		../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/win32/qt_config.prf \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/default_pre.prf \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/win32/default_pre.prf \
@@ -210,6 +211,7 @@ Makefile: Regula.pro ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++/qmake.con
 		../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5AxBase.prl \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Widgets.prl \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Gui.prl \
+		../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Sql.prl \
 		../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile Regula.pro
 ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -335,6 +337,7 @@ Makefile: Regula.pro ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++/qmake.con
 ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/win32/qt_config.prf:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++/qmake.conf:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/exclusive_builds.prf:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/default_pre.prf:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/features/win32/default_pre.prf:
@@ -363,6 +366,7 @@ Regula.pro:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5AxBase.prl:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Widgets.prl:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Gui.prl:
+../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Sql.prl:
 ../../Qt/Qt5.7.0/5.7/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile Regula.pro

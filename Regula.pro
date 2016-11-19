@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,13 +14,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    db/saphireworker.cpp
+    db/saphireworker.cpp \
+    input/documentinformation.cpp \
+    input/readdocx.cpp
 
 HEADERS  += mainwindow.h \
     input/itextextractor.h \
     db/idbworker.h \
     search/isearchengine.h \
     report/ireportengine.h \
-    db/saphireworker.h
+    db/saphireworker.h \
+    input/documentinformation.h \
+    input/readdocx.h
 
 FORMS    += mainwindow.ui

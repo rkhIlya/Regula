@@ -1,13 +1,13 @@
 INPUT(
 ./release\main.o
 ./release\mainwindow.o
+./release\saphireworker.o
 ./release\documentinformation.o
-./release\group.o
-./release\reference.o
 ./release\readdocx.o
 ./release\moc_mainwindow.o
 ./release\moc_itextextractor.o
 ./release\moc_idbworker.o
 ./release\moc_isearchengine.o
+./release\moc_saphireworker.o
 ./release\moc_readdocx.o
 );
